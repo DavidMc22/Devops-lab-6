@@ -1,0 +1,13 @@
+CC = gcc
+PROG_NAME ?= prog 
+
+$(PROG_NAME): Lab6.o mult.o
+	$(CC) -o $(PROG_NAME) Lab6.o mult.o
+
+%.o: %.CC
+	$(CC) -MD -MF $(substr .c,.d,$^) -o $@ -c $^
+
+.PHONY: CLEAN
+clean: 
+		rm -f *.o
+		rm -f $(PROG_NAME)
